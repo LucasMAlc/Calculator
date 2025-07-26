@@ -13,12 +13,14 @@ Portal web de uma calculadora interativa, com histórico de operações por usu�
 
 ## Interface
 
-Tela de Cadastro
-| ![Cadastro](interfaces/cadastro.png)| 
-Tela de Login
-| ![Login](interfaces/login.png) |
-Calculadora 
-| ![Calculadora](interfaces/calculadora.png) |
+#### Tela de Cadastro
+(interfaces/cadastro.png)
+
+#### Tela de Login
+(interfaces/login.png)
+
+#### Calculadora 
+(interfaces/calculadora.png)
 
 ## Tecnologias usadas
 
@@ -45,6 +47,6 @@ Calculadora
     - python manage.py runserver
 
 5. Acesse: http://127.0.0.1:8000
-    * Use o /register/ para criar uma conta
-    * Faça Login
+    - Use o /register/ para criar uma conta
+    - Faça Login
 
