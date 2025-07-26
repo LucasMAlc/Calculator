@@ -14,7 +14,6 @@ Portal web de uma calculadora interativa, com histórico de operações por usu�
 ## Interface
 
 | Tela de Cadastro | Tela de Login | Calculadora | 
-|---------------|---------------------------|
 | ![Login](interfaces/cadastro.png) | ![Cadastro](interfaces/login.png) | ![Calculadora](interfaces/calculadora.png) |
 
 ## Tecnologias usadas
@@ -28,16 +27,18 @@ Portal web de uma calculadora interativa, com histórico de operações por usu�
 ## Como rodar localmente
 
 1. Clone o repositório
+    - git clone https://github.com/LucasMAlc/Calculator.git
+
 2. Crie e ative um ambiente virtual:
-    python -m venv venv
-    source venv/bin/activate  # Windows: venv\Scripts\activate
+    - python -m venv venv
+    - source venv/bin/activate  # Windows: venv\Scripts\activate
  
 3. Instale as dependências 
-    pip install -r requirements.txt
+    - pip install -r requirements.txt
 
 4. Rode as migrações e o servidor
-    python manage.py migrate
-    python manage.py runserver
+    - python manage.py migrate
+    - python manage.py runserver
 
 5. Acesse: http://127.0.0.1:8000
     * Use o /register/ para criar uma conta
