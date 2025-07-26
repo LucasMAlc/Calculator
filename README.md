@@ -13,11 +13,11 @@ Portal web de uma calculadora interativa, com histórico de operações por usu�
 
 ## Interface
 
-| Tela de Cadastro | Calculadora | 
+Tela de Cadastro
 | ![Cadastro](interfaces/cadastro.png)| 
-| Tela de Login |
+Tela de Login
 | ![Login](interfaces/login.png) |
-| Calculadora |
+Calculadora 
 | ![Calculadora](interfaces/calculadora.png) |
 
 ## Tecnologias usadas
