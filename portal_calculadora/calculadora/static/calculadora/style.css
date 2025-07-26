@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.calculator {
+    width: 250px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.calculator button {
+    font-size: 20px;
+    padding: 15px;
+}
+
+.display {
+    grid-column: span 4;
+    font-size: 24px;
+    padding: 10px;
+    text-align: right;
+}
+
+.container {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+}
+
+.history {
+    width: 200px;
+}
