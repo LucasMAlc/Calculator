@@ -13,8 +13,12 @@ Portal web de uma calculadora interativa, com histórico de operações por usu�
 
 ## Interface
 
-| Tela de Cadastro | Tela de Login | Calculadora | 
-| ![Login](interfaces/cadastro.png) | ![Cadastro](interfaces/login.png) | ![Calculadora](interfaces/calculadora.png) |
+| Tela de Cadastro | Calculadora | 
+| ![Cadastro](interfaces/cadastro.png)| 
+| Tela de Login |
+| ![Login](interfaces/login.png) |
+| Calculadora |
+| ![Calculadora](interfaces/calculadora.png) |
 
 ## Tecnologias usadas
 
