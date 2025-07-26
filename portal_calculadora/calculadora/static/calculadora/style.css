@@ -1,32 +1,285 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset e base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at top, #3f0d63, #140030);
+    color: white;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h2 small {
+    font-size: 0.9rem;
+    display: block;
+    color: #aaa;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* Calculadora */
 .calculator {
-    width: 250px;
+    background-color: #1a0f2e;
+    padding: 20px;
+    border-radius: 15px;
+    width: 330px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-}
-
-.calculator button {
-    font-size: 20px;
-    padding: 15px;
+    gap: 10px;
 }
 
 .display {
     grid-column: span 4;
-    font-size: 24px;
-    padding: 10px;
+    height: 60px;
+    background-color: #0f0f2d;
+    color: white;
+    font-size: 2rem;
     text-align: right;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.container {
-    display: flex;
-    gap: 30px;
-    padding: 30px;
+button {
+    font-size: 1.2rem;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
 }
 
+/* Botões */
+button:hover {
+    opacity: 0.9;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button.operator {
+    background: #a249e6;
+    color: white;
+}
+
+button.equals {
+    background: linear-gradient(to right, #5f49e6, #2f6de1);
+    color: white;
+    grid-column: span 2;
+}
+
+button.clear {
+    background: #e63946;
+    color: white;
+}
+
+button.num {
+    background: #2d2f3a;
+    color: white;
+}
+
+/* Histórico */
 .history {
-    width: 200px;
+    background-color: #1a0f2e;
+    padding: 20px;
+    width: 300px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.history h3 {
+    font-size: 1.2rem;
+}
+
+.history ul {
+    list-style: none;
+    overflow-y: auto;
+    max-height: 300px;
+    padding: 0;
+}
+
+.history li {
+    background-color: #0f0f2d;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+}
+
+.history li .result {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+.history li .time {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+/* Botão lixeira */
+.clear-btn {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1rem;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-form button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logout-form button:hover {
+    background-color: darkred;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.title h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.title small {
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.auth-box {
+    background-color: #1a0f2e;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.auth-box h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.auth-box .subtitle {
+    color: #aaa;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background-color: #2d2f3a;
+    color: white;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #5f49e6;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.auth-button:hover {
+    background-color: #4937b3;
+}
+
+.alt-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.alt-link a {
+    color: #a249e6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.alt-link a:hover {
+    text-decoration: underline;
 }

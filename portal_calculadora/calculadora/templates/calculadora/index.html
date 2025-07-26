@@ -6,15 +6,19 @@
     <link rel="stylesheet" href="{% static 'calculadora/style.css' %}">
 </head>
 <body>
-    <h2>
-        Bem-vindo {{ request.user.username }}
-        <form method="post" action="{% url 'logout' %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" style="background:none; border:none; color:blue; cursor:pointer;">
-                Sair
-            </button>
-        </form>
-    </h2>
+    <div class="header">
+        <div class="user-info">
+            <span>Bem-vindo, {{ request.user.username }}</span>
+            <form method="post" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" title="Sair">Sair</button>
+            </form>
+        </div>
+        <div class="title">
+            <h1>Calculadora Avançada</h1>
+            <small>Calculadora com histórico de operações</small>
+        </div>
+    </div>
 
     <div class="container">
         <!-- Calculadora -->
@@ -25,47 +29,63 @@
                 <input type="hidden" name="num2" id="num2">
                 <input type="hidden" name="operador" id="operador">
 
-                <div class="calculator">
-                    <input type="text" id="display" class="display" readonly>
+        <div class="calculator">
+            <input type="text" id="display" class="display" readonly value="">
 
-                    <button type="button" onclick="append('%')">%</button>
-                    <button type="button" onclick="invertSign()">+/-</button>
-                    <button type="button" onclick="clearDisplay()">C</button>
-                    <button type="button" onclick="setOperator('/')">÷</button>
+            <button type="button" class="clear" onclick="clearDisplay()">C</button>
+            <button type="button" class="operator" onclick="invertSign()">±</button>
+            <button type="button" class="operator" onclick="append('%')">%</button>
+            <button type="button" class="operator" onclick="setOperator('/')">÷</button>
 
-                    <button type="button" onclick="append('7')">7</button>
-                    <button type="button" onclick="append('8')">8</button>
-                    <button type="button" onclick="append('9')">9</button>
-                    <button type="button" onclick="setOperator('*')">×</button>
+            <button type="button" class="num" onclick="append('7')">7</button>
+            <button type="button" class="num" onclick="append('8')">8</button>
+            <button type="button" class="num" onclick="append('9')">9</button>
+            <button type="button" class="operator" onclick="setOperator('*')">×</button>
 
-                    <button type="button" onclick="append('4')">4</button>
-                    <button type="button" onclick="append('5')">5</button>
-                    <button type="button" onclick="append('6')">6</button>
-                    <button type="button" onclick="setOperator('-')">−</button>
+            <button type="button" class="num" onclick="append('4')">4</button>
+            <button type="button" class="num" onclick="append('5')">5</button>
+            <button type="button" class="num" onclick="append('6')">6</button>
+            <button type="button" class="operator" onclick="setOperator('-')">−</button>
 
-                    <button type="button" onclick="append('1')">1</button>
-                    <button type="button" onclick="append('2')">2</button>
-                    <button type="button" onclick="append('3')">3</button>
-                    <button type="button" onclick="setOperator('+')">+</button>
+            <button type="button" class="num" onclick="append('1')">1</button>
+            <button type="button" class="num" onclick="append('2')">2</button>
+            <button type="button" class="num" onclick="append('3')">3</button>
+            <button type="button" class="operator" onclick="setOperator('+')">+</button>
 
-                    <button type="button" onclick="append('0')">0</button>
-                    <button type="button" onclick="append('.')">.</button>
-                    <button type="button" onclick="calculate()">=</button>
-                </div>
+            <button type="button" class="num" onclick="append('0')">0</button>
+            <button type="button" class="num" onclick="append('.')">.</button>
+            <button type="button" class="equals" onclick="calculate()">=</button>
+        </div>
+
             </form>
         </div>
 
         <!-- Histórico à direita -->
         <div class="history">
-            <h3>Histórico</h3>
+            <div class="history-header">
+                <h3><i class="fa fa-clock"></i> Histórico</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="clear_history">
+                    <button type="submit" class="clear-btn" title="Limpar Histórico">🗑️</button>
+                </form>
+            </div>
             <ul>
                 {% for op in historico %}
-                    <li>{{ op.parametros }} = {{ op.resultado }}</li>
+                    <li>
+                        {{ op.parametros }}
+                        <div class="result">= {{ op.resultado }}</div>
+                        <div class="time">{{ op.data_inclusao|date:"H:i" }}</div>
+                    </li>
+                {% empty %}
+                    <li>Nenhuma operação ainda</li>
                 {% endfor %}
             </ul>
         </div>
     </div>
 
     <script src="{% static 'calculadora/script.js' %}"></script>
+
+
 </body>
 </html>

@@ -3,17 +3,21 @@ let operador = '';
 let num1 = '';
 let num2 = '';
 
+function updateDisplay(value) {
+    document.getElementById('display').value = value;
+}
+
 function append(char) {
     current += char;
-    document.getElementById('display').value = current;
+    updateDisplay(current);
 }
 
 function setOperator(op) {
     if (!current) return;
     operador = op;
     num1 = current;
-    current = '';
-    document.getElementById('display').value = '';
+    current += op; // ex: "2+"
+    updateDisplay(current);
 }
 
 function clearDisplay() {
@@ -21,19 +25,28 @@ function clearDisplay() {
     operador = '';
     num1 = '';
     num2 = '';
-    document.getElementById('display').value = '';
+    updateDisplay('');
 }
 
 function invertSign() {
-    if (current) {
-        current = String(parseFloat(current) * -1);
-        document.getElementById('display').value = current;
+    // aplica ao último número digitado
+    let lastNumber = current.match(/(-?\d+\.?\d*)$/);
+    if (lastNumber) {
+        let original = lastNumber[0];
+        let inverted = parseFloat(original) * -1;
+        current = current.replace(/(-?\d+\.?\d*)$/, inverted);
+        updateDisplay(current);
     }
 }
 
 function calculate() {
-    if (!operador || !current) return;
-    num2 = current;
+    // Extrai número antes e depois do operador
+    let match = current.match(/^(-?\d+\.?\d*)([+\-*/%])(-?\d+\.?\d*)$/);
+    if (!match) return;
+
+    num1 = match[1];
+    operador = match[2];
+    num2 = match[3];
 
     document.getElementById('num1').value = num1;
     document.getElementById('num2').value = num2;

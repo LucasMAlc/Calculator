@@ -15,13 +15,16 @@ class CustomLogoutView(LogoutView):
 
 @login_required
 def index(request):
-    historico = Operacao.objects.filter(usuario=request.user).order_by('-data_inclusao')[:10]
-
     if request.method == 'POST':
+        # Checar se foi o botão "limpar histórico"
+        if request.POST.get('action') == 'clear_history':
+            Operacao.objects.filter(usuario=request.user).delete()
+            return redirect('/')
+
         numero1 = request.POST.get('num1')
         numero2 = request.POST.get('num2')
         operador = request.POST.get('operador')
-        
+
         try:
             n1 = float(numero1)
             n2 = float(numero2)
@@ -34,10 +37,12 @@ def index(request):
                 resultado = n1 * n2
             elif operador == '/':
                 resultado = n1 / n2 if n2 != 0 else 'Erro'
+            elif operador == '%':
+                resultado = (n1 / 100) * n2
             else:
                 resultado = 'Inválido'
 
-            # Salvando operação
+            # Registrar operação
             Operacao.objects.create(
                 usuario=request.user,
                 parametros=f'{n1} {operador} {n2}',
@@ -47,9 +52,21 @@ def index(request):
 
             return redirect('/')
         except:
-            resultado = 'Erro'
-    
-    return render(request, 'calculadora/index.html', {'historico': historico})
+            pass  # Se der erro, só recarrega sem registrar
+
+    historico = Operacao.objects.filter(usuario=request.user).order_by('-data_inclusao')
+
+    context = {
+        'historico': historico,
+        'display_result': '',
+    }
+
+    if request.method == 'POST' and 'resultado' in locals():
+        context['display_result'] = resultado  # isso será passado pro display após clicar "="
+
+    return render(request, 'calculadora/index.html', context)
+
+
 
 def register(request):
     if request.method == 'POST':
@@ -63,9 +80,7 @@ def register(request):
             user = User.objects.create_user(username=nome, email=email, password=senha)
             user.save()
 
-            # Login automático após cadastro
-            login(request, user)
-
+            login(request, user)  # login automático
             return redirect('index')
 
     return render(request, 'calculadora/register.html')
