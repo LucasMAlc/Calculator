@@ -1,0 +1,27 @@
+<h2>Bem-vindo {{ request.user.username }} | <a href="{% url 'logout' %}">Sair</a></h2>
+
+<div style="display: flex;">
+  <!-- Histórico -->
+  <div style="width: 30%; padding: 10px;">
+    <h3>Últimos Cálculos</h3>
+    <ul>
+      {% for op in historico %}
+        <li>{{ op.parametros }} = {{ op.resultado }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Calculadora -->
+  <div style="width: 70%; padding: 10px;">
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="num1" placeholder="Número 1" required>
+      <input type="text" name="num2" placeholder="Número 2" required><br><br>
+
+      <button name="operador" value="+">+</button>
+      <button name="operador" value="-">-</button>
+      <button name="operador" value="*">*</button>
+      <button name="operador" value="/">/</button>
+    </form>
+  </div>
+</div>
