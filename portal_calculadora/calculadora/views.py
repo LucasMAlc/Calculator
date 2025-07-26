@@ -3,6 +3,9 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Operacao
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 class CustomLoginView(LoginView):
     template_name = 'calculadora/login.html'
@@ -47,3 +50,23 @@ def index(request):
             resultado = 'Erro'
     
     return render(request, 'calculadora/index.html', {'historico': historico})
+
+def register(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+
+        if User.objects.filter(username=nome).exists():
+            messages.error(request, 'Usuário já existe.')
+        else:
+            user = User.objects.create_user(username=nome, email=email, password=senha)
+            user.save()
+
+            # Login automático após cadastro
+            login(request, user)
+
+            return redirect('index')
+
+    return render(request, 'calculadora/register.html')
+

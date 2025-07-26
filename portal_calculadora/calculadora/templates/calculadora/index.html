@@ -1,4 +1,13 @@
-<h2>Bem-vindo {{ request.user.username }} | <a href="{% url 'logout' %}">Sair</a></h2>
+<h2>
+    Bem-vindo {{ request.user.username }} |
+    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" style="background: none; border: none; color: blue; cursor: pointer;">
+            Sair
+        </button>
+    </form>
+</h2>
+
 
 <div style="display: flex;">
   <!-- Histórico -->
