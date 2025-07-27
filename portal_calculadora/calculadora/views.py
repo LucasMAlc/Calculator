@@ -8,13 +8,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .utils import Calculadora
 
-
-class CustomLoginView(LoginView):
-    template_name = 'calculadora/login.html'
-
-class CustomLogoutView(LogoutView):
-    next_page = reverse_lazy('login')
-
 @login_required
 def index(request):
     """
@@ -59,21 +52,3 @@ def index(request):
         'historico': historico,
         'display_result': resultado
     })
-
-def register(request):
-    if request.method == 'POST':
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-
-        if User.objects.filter(username=nome).exists():
-            messages.error(request, 'Usuário já existe.')
-        else:
-            user = User.objects.create_user(username=nome, email=email, password=senha)
-            user.save()
-
-            login(request, user)  # login automático
-            return redirect('index')
-
-    return render(request, 'calculadora/register.html')
-

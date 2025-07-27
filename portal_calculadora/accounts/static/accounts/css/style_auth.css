@@ -1,0 +1,100 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at top, #3f0d63, #140030);
+    color: white;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+/* Container principal de autenticação */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+/* Caixa de login/registro */
+.auth-box {
+    background-color: #1a0f2e;
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.auth-box h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.auth-box .subtitle {
+    color: #aaa;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+/* Grupos de formulário */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    background-color: #2d2f3a;
+    color: white;
+}
+
+/* Botão de autenticação */
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #5f49e6;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.auth-button:hover {
+    background-color: #4937b3;
+}
+
+/* Link alternativo (Já tem conta? Faça login) */
+.alt-link {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.alt-link a {
+    color: #a249e6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.alt-link a:hover {
+    text-decoration: underline;
+}

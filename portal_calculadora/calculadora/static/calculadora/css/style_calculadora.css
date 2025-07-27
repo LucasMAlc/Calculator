@@ -1,3 +1,4 @@
+/* Reset básico */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -12,6 +13,59 @@ body {
     min-height: 100vh;
 }
 
+/* Cabeçalho da aplicação */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.title h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.title small {
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+/* Informações do usuário */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1rem;
+}
+
+/* Formulário de logout */
+.logout-form {
+    margin: 0;
+}
+
+.logout-form button {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.logout-form button:hover {
+    background-color: darkred;
+}
+
+/* Título principal */
 h2 {
     text-align: center;
     font-size: 2rem;
@@ -24,6 +78,7 @@ h2 small {
     color: #aaa;
 }
 
+/* Container principal */
 .container {
     display: flex;
     justify-content: center;
@@ -31,6 +86,7 @@ h2 small {
     gap: 40px;
 }
 
+/* Calculadora */
 .calculator {
     background-color: #1a0f2e;
     padding: 20px;
@@ -41,6 +97,7 @@ h2 small {
     gap: 10px;
 }
 
+/* Display da calculadora */
 .display {
     grid-column: span 4;
     height: 60px;
@@ -54,6 +111,7 @@ h2 small {
     margin-bottom: 10px;
 }
 
+/* Botões da calculadora */
 button {
     font-size: 1.2rem;
     padding: 15px;
@@ -93,6 +151,7 @@ button.num {
     color: white;
 }
 
+/* Histórico de cálculos */
 .history {
     background-color: #1a0f2e;
     padding: 20px;
@@ -139,140 +198,11 @@ button.num {
     color: #999;
 }
 
+/* Botão de limpar histórico */
 .clear-btn {
     background: none;
     border: none;
     color: #ff4d4d;
     font-size: 1.2rem;
     cursor: pointer;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 1rem;
-}
-
-.logout-form {
-    margin: 0;
-}
-
-.logout-form button {
-    background-color: #e63946;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.logout-form button:hover {
-    background-color: darkred;
-}
-
-.title {
-    flex-grow: 1;
-    text-align: center;
-}
-
-.title h1 {
-    font-size: 2rem;
-    margin-bottom: 5px;
-}
-
-.title small {
-    font-size: 0.95rem;
-    color: #ccc;
-}
-
-.auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-}
-
-.auth-box {
-    background-color: #1a0f2e;
-    padding: 40px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    text-align: center;
-}
-
-.auth-box h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.auth-box .subtitle {
-    color: #aaa;
-    margin-bottom: 30px;
-    font-size: 0.95rem;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    font-size: 1rem;
-    background-color: #2d2f3a;
-    color: white;
-}
-
-.auth-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #5f49e6;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.auth-button:hover {
-    background-color: #4937b3;
-}
-
-.alt-link {
-    margin-top: 20px;
-    font-size: 0.9rem;
-}
-
-.alt-link a {
-    color: #a249e6;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.alt-link a:hover {
-    text-decoration: underline;
 }
