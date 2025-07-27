@@ -50,3 +50,17 @@ Portal web de uma calculadora interativa, com histórico de operações por usu�
     - Use o /register/ para criar uma conta
     - Faça Login
 
+## Testes Automatizados
+
+Eles verificam:
+
+Cálculos;
+Divisão por zero;
+Operações válidas e tratamento de erros.
+
+Para rodar os testes:
+1. Certifique-se de estar no diretório do projeto:
+    - cd portal_calculadora
+
+2. Execute o comando abaixo para rodar os testes:
+    - python manage.py test

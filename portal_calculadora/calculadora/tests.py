@@ -17,7 +17,7 @@ class CalculadoraTestCase(TestCase):
 
     def test_divisao_zero(self):
         calc = Calculadora(10, 0, '/')
-        self.assertEqual(calc.calcular(), 'Erro: Divisão por zero')
+        self.assertEqual(calc.calcular(), 'Erro: divisão por 0')
 
     def test_operador_invalido(self):
         calc = Calculadora(10, 5, '^')
