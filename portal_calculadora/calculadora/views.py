@@ -17,38 +17,35 @@ class CustomLogoutView(LogoutView):
 
 @login_required
 def index(request):
-    if request.method == 'POST':
-        if request.POST.get('action') == 'clear_history':
-            Operacao.objects.filter(usuario=request.user).delete()
-            return redirect('/')
+    historico = Operacao.objects.filter(usuario=request.user).order_by('-data_inclusao')[:10]
+    resultado = ''  # ← valor padrão vazio para evitar erro
 
-        primeiro_numero = request.POST.get('num1')
-        segundo_numero = request.POST.get('num2')
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'clear_history':
+            Operacao.objects.filter(usuario=request.user).delete()
+            return redirect('index')
+
+        num1 = request.POST.get('num1')
+        num2 = request.POST.get('num2')
         operador = request.POST.get('operador')
 
-        calc = Calculadora(primeiro_numero, segundo_numero, operador)
+        calc = Calculadora(num1, num2, operador)
         resultado = calc.calcular()
 
-        if resultado != 'Erro' and not str(resultado).startswith('Erro'):
-            if operador in ['inv']:
-                parametros = f'{operador}({primeiro_numero})'
-            else:
-                parametros = f'{primeiro_numero} {operador} {segundo_numero}'
+        Operacao.objects.create(
+            usuario=request.user,
+            parametros=f"{num1}{operador}{num2}",
+            resultado=resultado
+        )
 
-            Operacao.objects.create(
-                usuario=request.user,
-                parametros=parametros,
-                tipo=operador,
-                resultado=str(resultado)
-            )
+        historico = Operacao.objects.filter(usuario=request.user).order_by('-data_inclusao')[:10]
 
-        return redirect('/')
-
-    historico = Operacao.objects.filter(usuario=request.user).order_by('-data_inclusao')
     return render(request, 'calculadora/index.html', {
         'historico': historico,
-        'display_result': ''
+        'display_result': resultado
     })
+
 
 def register(request):
     if request.method == 'POST':

@@ -85,6 +85,19 @@
     </div>
 
     <script src="{% static 'calculadora/script.js' %}"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const result = "{{ display_result|default:'' }}";
+        if (result) {
+            document.getElementById('display').value = result;
+            // Limpa os valores antigos do front-end após o cálculo
+            current = '';
+            operador = '';
+            num1 = '';
+            num2 = '';
+        }
+    });
+    </script>
 
 
 </body>
