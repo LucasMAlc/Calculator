@@ -15,7 +15,6 @@ function append(char) {
 function setOperator(op) {
     if (!current) return;
 
-    // Operações unárias
     if (op === 'inv') {
         document.getElementById('num1').value = current;
         document.getElementById('operador').value = 'inv';
@@ -23,7 +22,6 @@ function setOperator(op) {
         return;
     }
 
-    // Operações binárias normais
     operador = op;
     primeiro_numero = current;
     current += op;

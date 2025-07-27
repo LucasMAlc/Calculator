@@ -60,7 +60,7 @@
             </form>
         </div>
 
-        <!-- Histórico à direita -->
+        <!-- Histórico -->
         <div class="history">
             <div class="history-header">
                 <h3><i class="fa fa-clock"></i> Histórico</h3>
@@ -90,7 +90,6 @@
         const result = "{{ display_result|default:'' }}";
         if (result) {
             document.getElementById('display').value = result;
-            // Limpa os valores antigos do front-end após o cálculo
             current = '';
             operador = '';
             num1 = '';
