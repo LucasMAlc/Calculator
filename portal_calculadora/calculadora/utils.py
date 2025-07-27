@@ -7,8 +7,6 @@ class Calculadora:
     def calcular(self):
         if self.operador in self.operacoes_binarias():
             return self.operacoes_binarias()[self.operador](self.primeiro_numero, self.segundo_numero)
-        elif self.operador in self.operacoes_unarias():
-            return self.operacoes_unarias()[self.operador](self.primeiro_numero)
         else:
             return 'Erro: Operador inválido'
 
@@ -21,9 +19,4 @@ class Calculadora:
             '/': lambda a, b: a / b if b != 0 else 'Erro: Divisão por zero',
             '%': lambda a, b: (a / 100) * b,
         }
-
-    @staticmethod
-    def operacoes_unarias():
-        return {
-            'inv': lambda a: -a,
-        }
+    

@@ -39,7 +39,6 @@ function clearDisplay() {
 }
 
 function invertSign() {
-    // aplica ao último número digitado
     let lastNumber = current.match(/(-?\d+\.?\d*)$/);
     if (lastNumber) {
         let original = lastNumber[0];

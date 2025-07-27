@@ -29,33 +29,33 @@
                 <input type="hidden" name="num2" id="num2">
                 <input type="hidden" name="operador" id="operador">
 
-        <div class="calculator">
-            <input type="text" id="display" class="display" readonly value="">
+                <div class="calculator">
+                    <input type="text" id="display" class="display" readonly value="">
 
-            <button type="button" class="clear" onclick="clearDisplay()">C</button>
-            <button type="button" class="operator" onclick="setOperator('inv')">+/-</button>
-            <button type="button" class="operator" onclick="append('%')">%</button>
-            <button type="button" class="operator" onclick="setOperator('/')">÷</button>
+                    <button type="button" class="clear" onclick="clearDisplay()">C</button>
+                    <button type="button" class="operator" onclick="invertSign()">+/-</button>
+                    <button type="button" class="operator" onclick="append('%')">%</button>
+                    <button type="button" class="operator" onclick="setOperator('/')">÷</button>
 
-            <button type="button" class="num" onclick="append('7')">7</button>
-            <button type="button" class="num" onclick="append('8')">8</button>
-            <button type="button" class="num" onclick="append('9')">9</button>
-            <button type="button" class="operator" onclick="setOperator('*')">×</button>
+                    <button type="button" class="num" onclick="append('7')">7</button>
+                    <button type="button" class="num" onclick="append('8')">8</button>
+                    <button type="button" class="num" onclick="append('9')">9</button>
+                    <button type="button" class="operator" onclick="setOperator('*')">×</button>
 
-            <button type="button" class="num" onclick="append('4')">4</button>
-            <button type="button" class="num" onclick="append('5')">5</button>
-            <button type="button" class="num" onclick="append('6')">6</button>
-            <button type="button" class="operator" onclick="setOperator('-')">−</button>
+                    <button type="button" class="num" onclick="append('4')">4</button>
+                    <button type="button" class="num" onclick="append('5')">5</button>
+                    <button type="button" class="num" onclick="append('6')">6</button>
+                    <button type="button" class="operator" onclick="setOperator('-')">−</button>
 
-            <button type="button" class="num" onclick="append('1')">1</button>
-            <button type="button" class="num" onclick="append('2')">2</button>
-            <button type="button" class="num" onclick="append('3')">3</button>
-            <button type="button" class="operator" onclick="setOperator('+')">+</button>
+                    <button type="button" class="num" onclick="append('1')">1</button>
+                    <button type="button" class="num" onclick="append('2')">2</button>
+                    <button type="button" class="num" onclick="append('3')">3</button>
+                    <button type="button" class="operator" onclick="setOperator('+')">+</button>
 
-            <button type="button" class="num" onclick="append('0')">0</button>
-            <button type="button" class="num" onclick="append('.')">.</button>
-            <button type="button" class="equals" onclick="calculate()">=</button>
-        </div>
+                    <button type="button" class="num" onclick="append('0')">0</button>
+                    <button type="button" class="num" onclick="append('.')">.</button>
+                    <button type="button" class="equals" onclick="calculate()">=</button>
+                </div>
 
             </form>
         </div>
@@ -72,11 +72,11 @@
             </div>
             <ul>
                 {% for op in historico %}
-                    <li>
-                        {{ op.parametros }}
-                        <div class="result">= {{ op.resultado }}</div>
-                        <div class="time">{{ op.data_inclusao|date:"H:i" }}</div>
-                    </li>
+                <li>
+                    {{ op.parametros }} = {{ op.resultado }} <br>
+                    <small>{{ op.data_inclusao|date:"d/m/Y H:i" }}</small>
+                </li>
+
                 {% empty %}
                     <li>Nenhuma operação ainda</li>
                 {% endfor %}
