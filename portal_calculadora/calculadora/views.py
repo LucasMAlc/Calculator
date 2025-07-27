@@ -6,6 +6,8 @@ from .models import Operacao
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from .utils import Calculadora
+
 
 class CustomLoginView(LoginView):
     template_name = 'calculadora/login.html'
@@ -16,57 +18,37 @@ class CustomLogoutView(LogoutView):
 @login_required
 def index(request):
     if request.method == 'POST':
-        # Checar se foi o botão "limpar histórico"
         if request.POST.get('action') == 'clear_history':
             Operacao.objects.filter(usuario=request.user).delete()
             return redirect('/')
 
-        numero1 = request.POST.get('num1')
-        numero2 = request.POST.get('num2')
+        primeiro_numero = request.POST.get('num1')
+        segundo_numero = request.POST.get('num2')
         operador = request.POST.get('operador')
 
-        try:
-            n1 = float(numero1)
-            n2 = float(numero2)
+        calc = Calculadora(primeiro_numero, segundo_numero, operador)
+        resultado = calc.calcular()
 
-            if operador == '+':
-                resultado = n1 + n2
-            elif operador == '-':
-                resultado = n1 - n2
-            elif operador == '*':
-                resultado = n1 * n2
-            elif operador == '/':
-                resultado = n1 / n2 if n2 != 0 else 'Erro'
-            elif operador == '%':
-                resultado = (n1 / 100) * n2
+        if resultado != 'Erro' and not str(resultado).startswith('Erro'):
+            if operador in ['inv']:
+                parametros = f'{operador}({primeiro_numero})'
             else:
-                resultado = 'Inválido'
+                parametros = f'{primeiro_numero} {operador} {segundo_numero}'
 
-            # Registrar operação
             Operacao.objects.create(
                 usuario=request.user,
-                parametros=f'{n1} {operador} {n2}',
+                parametros=parametros,
                 tipo=operador,
                 resultado=str(resultado)
             )
 
-            return redirect('/')
-        except:
-            pass  # Se der erro, só recarrega sem registrar
+        return redirect('/')
 
     historico = Operacao.objects.filter(usuario=request.user).order_by('-data_inclusao')
-
-    context = {
+    return render(request, 'calculadora/index.html', {
         'historico': historico,
-        'display_result': '',
-    }
-
-    if request.method == 'POST' and 'resultado' in locals():
-        context['display_result'] = resultado  # isso será passado pro display após clicar "="
-
-    return render(request, 'calculadora/index.html', context)
-
-
+        'display_result': ''
+    })
 
 def register(request):
     if request.method == 'POST':

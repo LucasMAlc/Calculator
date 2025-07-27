@@ -14,9 +14,19 @@ function append(char) {
 
 function setOperator(op) {
     if (!current) return;
+
+    // Operações unárias
+    if (op === 'inv') {
+        document.getElementById('num1').value = current;
+        document.getElementById('operador').value = 'inv';
+        document.getElementById('calc-form').submit();
+        return;
+    }
+
+    // Operações binárias normais
     operador = op;
-    num1 = current;
-    current += op; // ex: "2+"
+    primeiro_numero = current;
+    current += op;
     updateDisplay(current);
 }
 
@@ -40,16 +50,15 @@ function invertSign() {
 }
 
 function calculate() {
-    // Extrai número antes e depois do operador
     let match = current.match(/^(-?\d+\.?\d*)([+\-*/%])(-?\d+\.?\d*)$/);
     if (!match) return;
 
-    num1 = match[1];
+    primeiro_numero = match[1];
     operador = match[2];
-    num2 = match[3];
+    segundo_numero = match[3];
 
-    document.getElementById('num1').value = num1;
-    document.getElementById('num2').value = num2;
+    document.getElementById('num1').value = primeiro_numero;
+    document.getElementById('num2').value = segundo_numero;
     document.getElementById('operador').value = operador;
 
     document.getElementById('calc-form').submit();
