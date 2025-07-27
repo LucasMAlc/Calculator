@@ -3,6 +3,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Operacao(models.Model):
+    """
+    Model que representa uma operação matemática realizada por um usuário.
+    Guarda os parâmetros da conta, o resultado, a data e o autor.
+    """
     TIPO_OPERACAO = [
         ('+', 'Soma'),
         ('-', 'Subtração'),

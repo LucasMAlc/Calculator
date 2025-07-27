@@ -2,13 +2,18 @@ from django.test import TestCase
 from .utils import Calculadora
 
 class CalculadoraTestCase(TestCase):
+    """
+    Testes unitários para a classe Calculadora.
+    Verifica operações básicas e tratamentos de erro.
+    """
+        
     def test_soma(self):
         calc = Calculadora(10, 5, '+')
         self.assertEqual(calc.calcular(), 15)
 
-    def test_inversao(self):
-        calc = Calculadora(10, None, 'inv')
-        self.assertEqual(calc.calcular(), -10)
+    def test_subtracao(self):
+        calc = Calculadora(10, 5, '-')
+        self.assertEqual(calc.calcular(), 5)
 
     def test_divisao_zero(self):
         calc = Calculadora(10, 0, '/')
