@@ -64,5 +64,3 @@ Para rodar os testes:
 
 2. Execute o comando abaixo para rodar os testes:
     - python manage.py test
-  
-[text](https://email-assistant-1kk4.onrender.com)
